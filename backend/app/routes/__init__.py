@@ -1,5 +1,5 @@
-from .health import health_bp
+from .users import user_bp
 
 def register_blueprints(app):
     """Register all application blueprints."""
-    app.register_blueprint(health_bp)
+    app.register_blueprint(user_bp)
