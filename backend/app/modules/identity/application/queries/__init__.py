@@ -1,0 +1,7 @@
+from .get_role_query import GetRoleQuery
+from .list_roles_query import ListRolesQuery
+from .search_roles_query import SearchRolesQuery
+
+from .get_permission_query import GetPermissionQuery
+from .list_permissions_query import ListPermissionsQuery
+from .search_permissions_query import SearchPermissionsQuery

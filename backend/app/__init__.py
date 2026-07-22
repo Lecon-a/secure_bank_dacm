@@ -2,7 +2,9 @@ from flask import Flask
 from app.config import Config
 from app.extensions import db, jwt, migrate, cors
 from app.routes import register_blueprints
-from app.models import User  # Import the User model to ensure it's registered with SQLAlchemy
+from app.modules.identity.models import User  # Import the User model to ensure it's registered with SQLAlchemy
+from app.modules.identity.models import Role  # Import the Role model to ensure it's registered with SQLAlchemy
+from app.modules.identity.routes import role_bp
 
 
 def create_app():
@@ -18,5 +20,6 @@ def create_app():
 
     # register each file
     register_blueprints(app)
+    app.register_blueprint(role_bp)
 
     return app

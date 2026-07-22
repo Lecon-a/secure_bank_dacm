@@ -1,0 +1,7 @@
+from .create_role_command import CreateRoleCommand
+from .update_role_command import UpdateRoleCommand
+from .deactivate_role_command import DeactivateRoleCommand
+
+from .create_permission_command import CreatePermissionCommand
+from .update_permission_command import UpdatePermissionCommand
+from .deactivate_permission_command import DeactivatePermissionCommand

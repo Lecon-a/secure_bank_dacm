@@ -1,0 +1,7 @@
+from .create_role_handler import CreateRoleHandler
+from .update_role_handler import UpdateRoleHandler
+from .deactivate_role_handler import DeactivateRoleHandler
+
+from .create_permission_handler import CreatePermissionHandler
+from .update_permission_handler import UpdatePermissionHandler
+from .deactivate_permission_handler import DeactivatePermissionHandler
