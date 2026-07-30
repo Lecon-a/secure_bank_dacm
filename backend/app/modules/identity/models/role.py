@@ -65,17 +65,17 @@ class Role(BaseModel):
         nullable=True,
     )
 
-    # user_roles = relationship(
-    #     "UserRole",
-    #     back_populates="role",
-    #     lazy="select",
-    # )
+    user_roles = relationship(
+        "UserRole",
+        back_populates="role",
+        cascade="all, delete-orphan",
+    )
 
-    # role_permissions = relationship(
-    #     "RolePermission",
-    #     back_populates="role",
-    #     lazy="select",
-    # )
+    role_permissions = relationship(
+        "RolePermission",
+        back_populates="role",
+        cascade="all, delete-orphan",
+    )
 
     def __repr__(self):
         return (

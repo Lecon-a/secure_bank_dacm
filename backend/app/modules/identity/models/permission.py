@@ -3,7 +3,7 @@ from sqlalchemy import Column
 from sqlalchemy import String
 from sqlalchemy.orm import relationship
 
-from .base_model import BaseModel
+from .base import BaseModel
 
 
 class Permission(BaseModel):
@@ -49,7 +49,8 @@ class Permission(BaseModel):
     )
 
     # Enable after RolePermission entity exists
-    # role_permissions = relationship(
-    #     "RolePermission",
-    #     back_populates="permission",
-    # )
+    role_permissions = relationship(
+        "RolePermission",
+        back_populates="permission",
+        cascade="all, delete-orphan",
+    )

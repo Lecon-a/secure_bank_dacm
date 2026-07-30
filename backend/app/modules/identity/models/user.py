@@ -1,7 +1,7 @@
 from enum import Enum
 
 from app.extensions import db
-from app.modules.identity.models.base import BaseModel
+from .base import BaseModel
 
 
 class AccountStatus(Enum):
@@ -35,6 +35,13 @@ class User(BaseModel):
     failed_login_attempts = db.Column(db.Integer, default=0, nullable=False)
     last_login = db.Column(db.DateTime)
     password_changed_at = db.Column(db.DateTime)
+
+
+    user_roles = relationship(
+        "UserRole",
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )
 
     def __repr__(self):
         return f"<User {self.email}>"

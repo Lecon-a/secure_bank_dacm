@@ -1,7 +1,7 @@
 from app.modules.identity.application.commands.deactivate_role_command import (
     DeactivateRoleCommand,
 )
-from app.modules.identity.domain.repositories.role_repository import (
+from app.modules.identity.repositories.role_repository import (
     RoleRepository,
 )
 

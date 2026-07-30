@@ -1,5 +1,5 @@
-from app.modules.identity.domain.entities.role import Role
-from app.modules.identity.domain.repositories.role_repository import (
+from app.modules.identity.models.role import Role
+from app.modules.identity.repositories.role_repository import (
     RoleRepository,
 )
 from app.modules.identity.application.commands.create_role_command import (

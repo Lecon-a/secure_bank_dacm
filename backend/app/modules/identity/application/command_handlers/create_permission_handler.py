@@ -1,8 +1,8 @@
 from app.core.commands.base_command_handler import BaseCommandHandler
 from app.core.exceptions import ConflictException
 
-from app.modules.authorization.domain.entities.permission import Permission
-from app.modules.authorization.domain.repositories.permission_repository import (
+from app.modules.identity.models.permission import Permission
+from app.modules.identity.repositories.permission_repository import (
     PermissionRepository,
 )
 
