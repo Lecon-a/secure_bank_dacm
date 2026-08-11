@@ -1,6 +1,6 @@
 from app.core.queries.base_query_handler import BaseQueryHandler
 
-from app.modules.authorization.domain.repositories.permission_repository import (
+from app.modules.authorization.repositories.permission_repository import (
     PermissionRepository,
 )
 

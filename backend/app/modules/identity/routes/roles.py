@@ -53,7 +53,7 @@ from app.modules.identity.application.query_handlers.search_roles_handler import
     SearchRolesHandler,
 )
 
-from app.modules.identity.presentation.schemas.role_schema import (
+from app.modules.identity.schemas.role_schema import (
     CreateRoleSchema,
     UpdateRoleSchema,
 )

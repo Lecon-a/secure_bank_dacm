@@ -1,12 +1,16 @@
 from app.modules.authorization.application.decision_engine.evaluation_result import (
     EvaluationResult,
 )
-from app.modules.identity.domain.repositories.user_attribute_repository import (
-    UserAttributeRepository,
-)
-from app.modules.resource.domain.repositories.resource_repository import (
-    ResourceRepository,
-)
+
+
+class UserAttributeRepository:
+    def get_by_user_id(self, user_id):
+        return None
+
+
+class ResourceRepository:
+    def get_by_id(self, resource_id):
+        return None
 
 
 class ABACEvaluator:

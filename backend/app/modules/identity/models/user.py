@@ -1,5 +1,7 @@
 from enum import Enum
 
+from sqlalchemy.orm import relationship
+
 from app.extensions import db
 from .base import BaseModel
 

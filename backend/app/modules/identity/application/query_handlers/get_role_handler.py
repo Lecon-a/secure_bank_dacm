@@ -1,7 +1,7 @@
 from app.modules.identity.application.queries.get_role_query import (
     GetRoleQuery,
 )
-from app.modules.identity.domain.repositories.role_repository import (
+from app.modules.identity.repositories.role_repository import (
     RoleRepository,
 )
 

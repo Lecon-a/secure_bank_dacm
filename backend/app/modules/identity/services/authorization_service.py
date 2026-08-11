@@ -1,3 +1,7 @@
+from app.modules.authorization.application.decision_engine.hybrid_decision_engine import (
+    HybridDecisionEngine,
+)
+
 class AuthorizationService:
 
     def __init__(self):

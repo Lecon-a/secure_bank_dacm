@@ -1,7 +1,7 @@
 from app.modules.identity.application.commands.update_role_command import (
     UpdateRoleCommand,
 )
-from app.modules.identity.domain.repositories.role_repository import (
+from app.modules.identity.repositories.role_repository import (
     RoleRepository,
 )
 
