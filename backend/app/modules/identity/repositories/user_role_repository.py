@@ -1,7 +1,6 @@
 from app.core.repositories.base_repository import BaseRepository
 
-from ..entities.user_role import UserRole
-
+from app.modules.identity.models.user_role import UserRole
 
 class UserRoleRepository(BaseRepository):
 

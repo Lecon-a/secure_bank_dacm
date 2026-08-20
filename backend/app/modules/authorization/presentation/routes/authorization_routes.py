@@ -1,4 +1,8 @@
 from flask import Blueprint, request
+from flask_jwt_extended import (
+    get_jwt_identity,
+    jwt_required,
+)
 
 from app.modules.authorization.application.decision_engine.decision_request import (
     DecisionRequest,
@@ -15,12 +19,16 @@ authorization_bp = Blueprint(
 
 
 @authorization_bp.post("/evaluate")
+@jwt_required()
 def evaluate_authorization():
 
-    data = request.get_json()
+    data = request.get_json() or {}
+
+    # Get the authenticated user directly from the JWT.
+    authenticated_user_id = get_jwt_identity()
 
     decision_request = DecisionRequest(
-        user_id=data["user_id"],
+        user_id=authenticated_user_id,
         permission_code=data["permission_code"],
         action=data["action"],
         resource_id=data.get("resource_id"),

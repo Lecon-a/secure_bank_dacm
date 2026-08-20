@@ -2,6 +2,7 @@ from app.extensions import db
 
 
 class BaseRepository:
+
     def __init__(self, model_class):
         self.model_class = model_class
 
@@ -10,12 +11,15 @@ class BaseRepository:
         db.session.commit()
         return instance
 
-    def update(self):
+    def update(self, instance):
+        db.session.add(instance)
         db.session.commit()
+        return instance
 
     def delete(self, instance):
         db.session.delete(instance)
         db.session.commit()
+        return instance
 
     def get_by_id(self, item_id):
         return self.model_class.query.get(item_id)
@@ -24,4 +28,8 @@ class BaseRepository:
         return self.model_class.query.all()
 
     def get_active_roles(self):
-        return self.model_class.query.filter_by(is_active=True).all()
+        return (
+            self.model_class.query
+            .filter_by(is_active=True)
+            .all()
+        )

@@ -1,7 +1,6 @@
 import api from "./axios";
 
 export interface AuthorizationRequest {
-  user_id: string;
   permission_code: string;
   action: string;
   resource_id?: string;
@@ -14,6 +13,15 @@ export interface AuthorizationRequest {
   browser?: string;
 }
 
+export interface EvaluationResult {
+  allowed: boolean;
+  evaluator: string;
+  metadata: Record<string, unknown>;
+  reason: string;
+  requires_step_up: boolean;
+  score: number | null;
+}
+
 export interface AuthorizationResponse {
   allowed: boolean;
   decision: string;
@@ -24,9 +32,9 @@ export interface AuthorizationResponse {
   trust_score?: number | null;
   risk_score?: number | null;
 
-  evaluator_results?: Record<
+  evaluator_results: Record<
     string,
-    unknown
+    EvaluationResult
   >;
 
   metadata?: Record<
@@ -37,11 +45,12 @@ export interface AuthorizationResponse {
 
 export async function evaluateAuthorization(
   request: AuthorizationRequest
-) {
-  const response = await api.post<AuthorizationResponse>(
-    "/authorization/evaluate",
-    request
-  );
+): Promise<AuthorizationResponse> {
+  const response =
+    await api.post<AuthorizationResponse>(
+      "/authorization/evaluate",
+      request
+    );
 
   return response.data;
 }
