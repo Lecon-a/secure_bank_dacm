@@ -3,13 +3,14 @@ from typing import Optional
 from app.extensions import db
 from app.modules.identity.models.user import User
 
+
 class UserRepository:
     """
     Handles all database operations related to User.
     """
 
     @staticmethod
-    def create(user:User) -> User:
+    def create(user: User) -> User:
         db.session.add(user)
         db.session.commit()
         return user
@@ -23,20 +24,30 @@ class UserRepository:
         return User.query.filter_by(email=email).first()
 
     @staticmethod
-    def get_by_employee_id(employee_id: str) -> Optional[User]:
-        return User.query.filter_by(employee_id=employee_id).first()
+    def get_by_employee_id(
+        employee_id: str,
+    ) -> Optional[User]:
+        return User.query.filter_by(
+            employee_id=employee_id
+        ).first()
 
     @staticmethod
     def get_all():
-        return User.query.order_by(User.created_at.desc()).all()
+        return User.query.order_by(
+            User.created_at.desc()
+        ).all()
 
     @staticmethod
-    def update():
+    def update(user: User) -> User:
+        db.session.add(user)
         db.session.commit()
+        return user
 
     @staticmethod
-    def save():
+    def save(user: User) -> User:
+        db.session.add(user)
         db.session.commit()
+        return user
 
     @staticmethod
     def delete(user: User):

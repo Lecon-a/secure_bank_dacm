@@ -13,7 +13,9 @@ class DeactivatePermissionHandler(BaseCommandHandler):
 
     def handle(self, command):
 
-        permission = self.repository.get_by_id(command.permission_id)
+        permission = self.repository.get_by_id(
+            command.permission_id
+        )
 
         if permission is None:
             raise NotFoundException(
@@ -22,6 +24,8 @@ class DeactivatePermissionHandler(BaseCommandHandler):
 
         permission.is_active = False
 
-        self.repository.update(permission)
+        self.repository.update(
+            permission
+        )
 
         return permission

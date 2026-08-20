@@ -45,5 +45,12 @@ class User(BaseModel):
         cascade="all, delete-orphan",
     )
 
+    trust_score = relationship(
+        "TrustScore",
+        back_populates="user",
+        uselist=False,
+        cascade="all, delete-orphan",
+    )
+
     def __repr__(self):
         return f"<User {self.email}>"

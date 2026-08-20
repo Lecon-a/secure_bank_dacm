@@ -1,6 +1,10 @@
 from http import HTTPStatus
 
 from flask import Blueprint, request
+from flask_jwt_extended import (
+    get_jwt_identity,
+    jwt_required,
+)
 from marshmallow import ValidationError
 
 from app.modules.identity.schemas.user_schema import (
@@ -8,6 +12,9 @@ from app.modules.identity.schemas.user_schema import (
     UserResponseSchema,
 )
 from app.modules.identity.services.user_service import UserService
+from app.modules.identity.services.permission_service import (
+    PermissionService,
+)
 from app.modules.identity.exceptions.user_exceptions import (
     UserAlreadyExistsException,
     UserNotFoundException,
@@ -27,12 +34,32 @@ response_list_schema = UserResponseSchema(many=True)
 
 
 @user_bp.post("/")
+@jwt_required()
 def create_user():
     """
     Create a new user.
+
+    Requires an authenticated user with
+    the USER_CREATE permission.
     """
     try:
-        data = create_schema.load(request.get_json())
+        authenticated_user_id = get_jwt_identity()
+
+        if not PermissionService.has_permission(
+            authenticated_user_id,
+            "USER_CREATE",
+        ):
+            return ApiResponse.error(
+                message=(
+                    "You do not have permission "
+                    "to create users."
+                ),
+                status_code=HTTPStatus.FORBIDDEN,
+            )
+
+        data = create_schema.load(
+            request.get_json()
+        )
 
         user = UserService.create_user(
             employee_id=data["employee_id"],

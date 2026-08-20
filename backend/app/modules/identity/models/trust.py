@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from sqlalchemy.orm import relationship
+
 from app.extensions import db
 
 
@@ -30,6 +32,11 @@ class TrustScore(db.Model):
         nullable=False,
         default=datetime.utcnow,
         onupdate=datetime.utcnow,
+    )
+
+    user = relationship(
+        "User",
+        back_populates="trust_score",
     )
 
     def __repr__(self):

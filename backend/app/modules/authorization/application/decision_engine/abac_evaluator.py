@@ -2,20 +2,19 @@ from app.modules.authorization.application.decision_engine.evaluation_result imp
     EvaluationResult,
 )
 
+from app.modules.identity.repositories.user_attribute_repository import (
+    UserAttributeRepository,
+)
 
-class UserAttributeRepository:
-    def get_by_user_id(self, user_id):
-        return None
-
-
-class ResourceRepository:
-    def get_by_id(self, resource_id):
-        return None
+from app.modules.authorization.repositories.resource_repository import (
+    ResourceRepository,
+)
 
 
 class ABACEvaluator:
 
     def __init__(self):
+
         self.user_attribute_repository = UserAttributeRepository()
         self.resource_repository = ResourceRepository()
 
@@ -43,7 +42,6 @@ class ABACEvaluator:
                 reason="Resource not found."
             )
 
-        # Example Rule 1
         if (
             resource.required_clearance >
             user_attributes.clearance_level
@@ -54,7 +52,6 @@ class ABACEvaluator:
                 reason="Insufficient clearance."
             )
 
-        # Example Rule 2
         if (
             resource.department and
             resource.department != user_attributes.department

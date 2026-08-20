@@ -1,7 +1,7 @@
 from app.modules.authorization.application.decision_engine.evaluation_result import (
     EvaluationResult,
 )
-from app.modules.trust.domain.repositories.trust_repository import (
+from app.modules.identity.repositories.trust_repository import (
     TrustRepository,
 )
 

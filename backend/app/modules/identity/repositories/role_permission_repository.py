@@ -1,6 +1,6 @@
 from app.core.repositories.base_repository import BaseRepository
 
-from ..entities.role_permission import RolePermission
+from app.modules.identity.models.role_permission import RolePermission
 
 
 class RolePermissionRepository(BaseRepository):
